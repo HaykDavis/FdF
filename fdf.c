@@ -6,7 +6,7 @@
 /*   By: psoares <psoares@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/17 14:18:17 by psoares           #+#    #+#             */
-/*   Updated: 2021/10/27 01:35:32 by psoares          ###   ########.fr       */
+/*   Updated: 2022/04/01 13:49:04 by psoares          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,10 +14,10 @@
 
 void	first_init(t_fdf *data)
 {
-	data->zoom = 45;
-	data->shift_y = 525;
-	data->shift_x = 525;
-	data->upp = 1;
+	data->zoom = 55;
+	data->shift_y = 280;
+	data->shift_x = 825;
+	data->upp = 5;
 	data->alpha = 0;
 	data->beta = 0;
 	data->gamma = 0;
@@ -44,10 +44,13 @@ int	deal_key(int key, t_fdf *data)
 
 int	main(int argc, char **argv)
 {
-	int		i;
+	int		len;
 	t_fdf	*data;
 
-	(void) argc;
+	len = (int)ft_strlen(argv[1]);
+	if (argc != 2 || argv[1][len - 1] != 'f' || argv[1][len - 2] != 'd'
+	|| argv[1][len - 3] != 'f' || argv[1][len - 4] != '.')
+		error();
 	data = malloc(sizeof(t_fdf));
 	read_file(argv[1], data);
 	data->mlx_ptr = mlx_init();
@@ -57,4 +60,5 @@ int	main(int argc, char **argv)
 	mlx_hook(data->win_ptr, 2, 0, deal_key, data);
 	mlx_hook(data->win_ptr, 17, 0, temp_exit, data);
 	mlx_loop(data->mlx_ptr);
+	return (0);
 }

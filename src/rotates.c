@@ -6,7 +6,7 @@
 /*   By: psoares <psoares@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/27 01:36:36 by psoares           #+#    #+#             */
-/*   Updated: 2021/10/27 01:41:56 by psoares          ###   ########.fr       */
+/*   Updated: 2021/10/27 12:06:19 by psoares          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,8 @@
 
 void	isometric(float *x, float *y, int z)
 {
-	*x = (*x - *y) * cos(0.8);
-	*y = (*x + *y) * sin(0.8) - z;
+	*x = (*x - *y) * cos(0.9);
+	*y = (*x + *y) * sin(0.9) - z;
 }
 
 void	rotate_x(float *y, int *z, float alpha)

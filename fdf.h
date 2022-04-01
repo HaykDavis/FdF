@@ -6,7 +6,7 @@
 /*   By: psoares <psoares@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/27 01:19:24 by psoares           #+#    #+#             */
-/*   Updated: 2021/10/27 01:50:35 by psoares          ###   ########.fr       */
+/*   Updated: 2021/10/27 16:27:05 by psoares          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,14 +15,13 @@
 
 # include <stdlib.h>
 # include <unistd.h>
-# include <stdio.h>
 # include <math.h>
 # include <fcntl.h>
 # include "mlx/mlx.h"
 # include "gnl/get_next_line.h"
 
-# define WIDTH			1500.0
-# define HEIGHT			1500.0
+# define WIDTH			1920.0
+# define HEIGHT			1080.0
 
 # define SHIFT_UP		126
 # define SHIFT_DOWN		125
@@ -77,9 +76,11 @@ typedef struct s_fdf
 	t_amg	img;
 }				t_fdf;
 
+void	error(void);
 float	mod(float i);
 void	brew(t_fdf data);
 void	draw(t_fdf *data);
+int		temp_exit(int key);
 void	map_init(t_fdf *data);
 void	do_shift(t_fdf *data);
 void	rotate_map(t_fdf *data);
@@ -91,7 +92,6 @@ void	zoom(int key, t_fdf *data);
 void	shift(int key, t_fdf *data);
 void	rotate(int key, t_fdf *data);
 void	do_23d(int key, t_fdf *data);
-int		temp_exit(int key, t_fdf *data);
 char	**ft_split(char const *s, char c);
 void	isometric(float *x, float *y, int z);
 void	rotate_y(float *x, int *z, float beta);

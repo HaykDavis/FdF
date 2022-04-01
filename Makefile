@@ -6,7 +6,7 @@
 #    By: psoares <psoares@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/09/17 14:17:02 by psoares           #+#    #+#              #
-#    Updated: 2021/10/27 01:47:31 by psoares          ###   ########.fr        #
+#    Updated: 2021/10/27 16:28:29 by psoares          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -27,23 +27,35 @@ MY_FDF_SRCS = fdf.c \
 
 HEADER		= fdf.h
 
+MINILIBX = libmlx.a
+
+OBJ = $(patsubst %.c,%.o,$(MY_FDF_SRCS))
+
 CC = gcc
 
 RM = rm -f
 
-FLAGS = -Lmlx -lmlx -framework OpenGL -framework AppKit
+FRAME = -Lmlx -lmlx -framework OpenGL -framework AppKit -Wall -Werror -Wextra
+
+FLAGS = -Wall -Werror -Wextra
 
 all: $(MY_FDF)
 
-$(MY_FDF) : $(MY_FDF_SRCS) $(HEADER)
-	@$(CC) $(FLAGS) $(MY_FDF_SRCS) -o $(MY_FDF)
+$(MY_FDF) : $(OBJ) $(MY_FDF_SRCS) $(HEADER)
+	@make -C mlx
+	@cp mlx/$(MINILIBX) .
+	@$(CC) $(FLAGS) $(FRAME) $(MY_FDF_SRCS) -o $(MY_FDF)
 	@printf "FdF was build ✅\n"
 
+bonus : all
+
 clean:
-		@$(RM) $(MY_FDF)
+		@$(RM) $(OBJ)
+		@make clean -C mlx
 		@printf "ALL is in trash 🗑\n"
 
 fclean: clean
+		@$(RM) $(MY_FDF) $(MINILIBX)
 
 re: fclean all
 
